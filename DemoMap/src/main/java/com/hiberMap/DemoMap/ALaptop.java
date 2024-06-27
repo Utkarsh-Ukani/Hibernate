@@ -1,10 +1,9 @@
 package com.hiberMap.DemoMap;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Entity
+@javax.persistence.Entity
 public class ALaptop {
 
 	@Id

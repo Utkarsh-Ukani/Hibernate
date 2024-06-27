@@ -1,17 +1,15 @@
 package com.hiberMap.DemoMap;
 
+import javax.persistence.Cacheable;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
-@Entity
+@javax.persistence.Entity
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Alien {
-	@Id
+	@javax.persistence.Id
 	private int aid;
 	private String aname;
 	private String color;

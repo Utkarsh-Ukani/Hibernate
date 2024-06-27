@@ -1,12 +1,11 @@
 package com.hiberMap.DemoMap;
 
-import java.util.Collection;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * Hello world!
@@ -32,18 +31,25 @@ public class App
         Alien a = null;
         
         Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
-        ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
+        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
         SessionFactory sf = con.buildSessionFactory(reg);
         Session session1 = sf.openSession();
         
 //        for mapping example
         session1.beginTransaction();
-        // first level cache
+        // first level cache session same so it will cache and it is provided by hibernate so we dont need to use any extra library
         a = (Alien) session1.get(Alien.class, 1);
         System.out.println(a);
         
-        a = (Alien) session1.get(Alien.class, 1);
+        session1.getTransaction().commit();
+        
+        Session session2 = sf.openSession();
+        session2.beginTransaction();
+        
+        a = (Alien) session2.get(Alien.class, 1);
         System.out.println(a);
+        
+        session2.getTransaction().commit();
         
 //      fetch  
 //        session.save(laptop);
@@ -60,7 +66,7 @@ public class App
 //        	System.out.println(l);
 //        }
         
-        session1.getTransaction().commit();
+        
         session1.close();
         
     }

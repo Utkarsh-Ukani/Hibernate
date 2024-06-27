@@ -3,19 +3,17 @@ package com.hiberMap.DemoMap;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import javax.persistence.FetchType;
 
-@Entity
+
+@javax.persistence.Entity
 public class Student {
-	@Id
+	@javax.persistence.Id
 	private int rollno;
 	private String name;
 	private int marks;
 	
-	@ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
+	@javax.persistence.ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
 	private List<Laptop> laptop = new ArrayList<Laptop>();
 	
 	

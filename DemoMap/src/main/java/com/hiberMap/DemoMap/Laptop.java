@@ -3,16 +3,13 @@ package com.hiberMap.DemoMap;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 
-@Entity
+@javax.persistence.Entity
 public class Laptop {
-	@Id
+	@javax.persistence.Id
 	private int lid;
 	private String lname;
-	@ManyToMany
+	@javax.persistence.ManyToMany
 	private List<Student> student = new ArrayList<Student>();
 	
 	public int getLid() {
