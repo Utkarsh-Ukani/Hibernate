@@ -29,22 +29,29 @@ public class App
 //        s.getLaptop().add(laptop);
 //        laptop.getStudent().add(s);
     	
+        Alien a = null;
         
-        
-        Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class).addAnnotatedClass(ALaptop.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
         ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
         SessionFactory sf = con.buildSessionFactory(reg);
-        Session session = sf.openSession();
+        Session session1 = sf.openSession();
         
 //        for mapping example
-        session.beginTransaction();
-//        
+        session1.beginTransaction();
+        // first level cache
+        a = (Alien) session1.get(Alien.class, 1);
+        System.out.println(a);
+        
+        a = (Alien) session1.get(Alien.class, 1);
+        System.out.println(a);
+        
+//      fetch  
 //        session.save(laptop);
 //        session.save(s);
         
         // for fetching
-        Alien a1 = session.get(Alien.class, 1);
-        System.out.println(a1.getAname());
+//        Alien a1 = session.get(Alien.class, 1);
+//        System.out.println(a1);
         
 //        Lazy fetch
 //        Collection<ALaptop> laps = a1.getLaps();
@@ -53,8 +60,8 @@ public class App
 //        	System.out.println(l);
 //        }
         
-        session.getTransaction().commit();
-        session.close();
+        session1.getTransaction().commit();
+        session1.close();
         
     }
 }

@@ -33,6 +33,10 @@ public class Laptop {
 	public void setStudent(List<Student> student) {
 		this.student = student;
 	}
+	@Override
+	public String toString() {
+		return "Laptop [lid=" + lid + ", lname=" + lname + ", student=" + student + "]";
+	}
 	
 	
 }
