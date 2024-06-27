@@ -6,6 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.hibernate.Query;
+
+
 
 /**
  * Hello world!
@@ -38,15 +41,29 @@ public class App
 //        for mapping example
         session1.beginTransaction();
         // first level cache session same so it will cache and it is provided by hibernate so we dont need to use any extra library
-        a = (Alien) session1.get(Alien.class, 1);
+        
+        Query q1 = session1.createQuery("from Alien where aid=1");
+        q1.setCacheable(true);
+
+        
+        
+//        a = (Alien) session1.get(Alien.class, 1);
+        a = (Alien) q1.uniqueResult();
         System.out.println(a);
         
         session1.getTransaction().commit();
         
+        
         Session session2 = sf.openSession();
         session2.beginTransaction();
         
-        a = (Alien) session2.get(Alien.class, 1);
+        Query q2 = session2.createQuery("from Alien where aid=1");
+        q2.setCacheable(true);
+
+        
+//        a = (Alien) session2.get(Alien.class, 1);
+        a = (Alien) q2.uniqueResult();
+
         System.out.println(a);
         
         session2.getTransaction().commit();
