@@ -1,9 +1,5 @@
 package com.hiberMap.DemoMap;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.FetchType;
 
 
 @javax.persistence.Entity
@@ -13,8 +9,8 @@ public class Student {
 	private String name;
 	private int marks;
 	
-	@javax.persistence.ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
-	private List<Laptop> laptop = new ArrayList<Laptop>();
+//	@javax.persistence.ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
+//	private List<Laptop> laptop = new ArrayList<Laptop>();
 	
 	
 	public int getRollno() {
@@ -36,12 +32,12 @@ public class Student {
 		this.marks = marks;
 	}
 	
-	public List<Laptop> getLaptop() {
-		return laptop;
-	}
-	public void setLaptop(List<Laptop> laptop) {
-		this.laptop = laptop;
-	}
+//	public List<Laptop> getLaptop() {
+//		return laptop;
+//	}
+//	public void setLaptop(List<Laptop> laptop) {
+//		this.laptop = laptop;
+//	}
 	@Override
 	public String toString() {
 		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + "]";
