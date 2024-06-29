@@ -2,16 +2,18 @@ package com.hiberMap.DemoMap;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @javax.persistence.Entity
+@Table(name = "LaptopState")
 public class ALaptop {
 
 	@Id
 	private int lid;
 	private String brand;
 	private int price;
-	@ManyToOne
-	private Alien alien;
+//	@ManyToOne
+//	private Alien alien;
 	
 	public int getLid() {
 		return lid;
@@ -31,14 +33,18 @@ public class ALaptop {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Alien getAlien() {
-		return alien;
-	}
-	public void setAlien(Alien alien) {
-		this.alien = alien;
-	}
+//	public Alien getAlien() {
+//		return alien;
+//	}
+//	public void setAlien(Alien alien) {
+//		this.alien = alien;
+//	}
+//	@Override
+//	public String toString() {
+//		return "ALaptop [lid=" + lid + ", brand=" + brand + ", price=" + price + ", alien=" + alien + "]";
+//	} 
 	@Override
 	public String toString() {
-		return "ALaptop [lid=" + lid + ", brand=" + brand + ", price=" + price + ", alien=" + alien + "]";
-	} 
+		return "ALaptop [lid=" + lid + ", brand=" + brand + ", price=" + price + "]";
+	}
 }
